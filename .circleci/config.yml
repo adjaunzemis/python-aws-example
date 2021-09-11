@@ -38,7 +38,7 @@ jobs:
           paths:
             - function.zip
             
-  deploy-dev:
+  deploy-to-aws:
     executor: aws-cli/default
     steps:
       - attach_workspace:
@@ -49,7 +49,7 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - run:
           name: Upload to S3
-          command: aws s3 cp funciton.zip s3://serverless-fastapi-adj/function.zip
+          command: aws s3 cp function.zip s3://serverless-fastapi-adj/function.zip
       - run:
           name: Deploy new Lambda
           command: aws lambda update-function-code --function-name serverless-fastapi-lambda --s3-bucket serverless-fastapi-adj --s3-key function.zip
@@ -63,7 +63,7 @@ workflows:
             branches:
               only:
                 - master
-      - deploy-dev:
+      - deploy-to-aws:
           context: cicd-demo-dev
           requires:
             - build-and-test
