@@ -7,16 +7,18 @@ jobs:
   build-and-test:
     executor:
       name: python/default
-      tag: '3.8'
+      tag: "3.8"
     steps:
       - checkout
       - run:
           name: Setup Virtual Env
+          when: always
           command: |
             virtualenv -p python3.8 .venv
             echo "source ./.venv/bin/activate" >> $BASH_ENV
       - run:
           name: Install Dependencies
+          when: always
           command: pip install -r requirements.txt
 
 workflows:
