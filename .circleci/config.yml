@@ -24,6 +24,14 @@ jobs:
           name: Test
           when: always
           command: pytest
+      - run:
+          name: Create Zipfile archive of Dependencies
+          command: |
+            cd .venv/Lib/site-packages
+            zip -r9 ../../../function.zip .
+      - run:
+          name: Add App to Zipfile
+          command: zip -g ./function.zip -r app
 
 workflows:
   build-test-and-deploy:
