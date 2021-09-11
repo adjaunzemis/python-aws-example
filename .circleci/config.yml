@@ -15,7 +15,7 @@ jobs:
           when: always
           command: |
             python -m venv .venv
-            echo "source ./.venv/Scripts/activate" >> $BASH_ENV
+            echo "source ./.venv/bin/activate" >> $BASH_ENV
       - run:
           name: Install Dependencies
           when: always
