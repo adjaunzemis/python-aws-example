@@ -20,6 +20,10 @@ jobs:
           name: Install Dependencies
           when: always
           command: pip install -r requirements.txt
+      - run:
+          name: Test
+          when: always
+          command: pytest
 
 workflows:
   build-test-and-deploy:
