@@ -11,11 +11,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Setup Virtual Env
+          name: Setup Virtual Environment
           when: always
           command: |
             python -m venv .venv
-            echo "source ./.venv/bin/activate" >> $BASH_ENV
+            echo "source ./.venv/Scripts/activate" >> $BASH_ENV
       - run:
           name: Install Dependencies
           when: always
